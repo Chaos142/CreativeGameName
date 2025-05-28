@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CSFinal:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CSFinal_jar</output-path>
+    <root id="archive" name="CSFinal.jar">
+      <element id="module-output" name="CSFinal" />
+    </root>
+  </artifact>
+</component>
