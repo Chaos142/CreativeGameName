@@ -34,8 +34,8 @@ Items that can fall from the sky (customize as needed):
 2. Run java -jar `jarfile.jar` in a console
 **Note: some consoles may not support the clear escape code (`\033[H\033[2J`) or emojis used for the display.**  
 ### CodeHS (recommended)  
+[Use this link to play our version](https://codehs.com/sandbox/id/finalproject-5KrTSO/run)  
+**OR**  
 Since the game was made for CodeHS, it is the recommended environment. However, the leaderboard may not work as intended.  
 1. Download the source code  
 2. Upload each `.java` file and `leaderboard.txt` to the CodeHS repository  
-**OR**  
-[Use this link to play our version](https://codehs.com/sandbox/id/finalproject-5KrTSO/run)  
