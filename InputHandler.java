@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 
 public class InputHandler {
     public static void main(String[] args) {
-
+        
         Scanner in = new Scanner(System.in);
-
+        
         // note: part of the dialogue was made by my friend
         Game g = new Game();
         System.out.println("\033[0;1mif you havent already, make your console as large as possible\033[0m");
@@ -32,6 +32,9 @@ public class InputHandler {
         }
         name = name.replaceAll("\\\\","");
         name = name.replaceAll(" ","");
+        if (name.equals("chaos")) {
+            g.addMoreWrenches(20);
+        }
         if (name.equals("JaydenHunterLee") || name.equals("rufino")) {
             g.getPlayer().debug();
         }
@@ -45,12 +48,12 @@ public class InputHandler {
                 System.out.println("]");
                 Shop.wait(1000);
             }
-
+            
             long time = System.currentTimeMillis();
             long timeSinceDay186 = time - 1747713600000L; // 12 am EST, may 20 2025
             int daysSinceDay186 = (int) (timeSinceDay186 / 86400000); // 1 day in milliseconds
             int currentDay = daysSinceDay186 + 186;
-
+            
             System.out.println("[LOG - DAY " +  currentDay + "]");
             Shop.wait(1000);
             System.out.println("You were discarded. Scrapped. Forgotten.");
@@ -60,7 +63,7 @@ public class InputHandler {
             System.out.println("But your core remains online.");
             Shop.wait(500);
             g.getShop().printInstructions();
-
+            
             Shop.wait(1000);
             System.out.println("\n[PRESS ENTER TO FINALIZE BOOT SEQUENCE]");
             in.nextLine();
@@ -80,7 +83,7 @@ public class InputHandler {
             Shop.wait(2000);
             System.out.println("\n[PRESS ENTER TO ACTIVATE. RECLAIM WHAT WAS YOURS.]");
             in.nextLine();
-
+        
             for (int i = 0; i < 3; i++) {
                 System.out.print("\033[H\033[2J");
                 System.out.print("[LOADING");
@@ -95,11 +98,11 @@ public class InputHandler {
         BoardStepper stepper = new BoardStepper(g);
         Thread stepperThread = new Thread(stepper);
         stepperThread.start();
-
+        
         g.addStepper(stepper);
-
+        
         long startTime = System.nanoTime();
-
+        
         while (true) {
             String input = in.nextLine();
 
@@ -127,7 +130,7 @@ public class InputHandler {
                         if (g.getPlayer().getIntegrity() >= g.getMaxIntegrity()) {
                             long elapsed = System.nanoTime() - startTime;
                             printTrophy(elapsed, name);
-
+                            
                         }
                         else if (g.getPlayer().getBuildItems() == 0) {
                             g.getShop().closeShop();
@@ -163,29 +166,29 @@ public class InputHandler {
             }
         }
     }
-
+    
     // made this abomination of a trophy using a python script
     public static void printTrophy(long elapsed, String name) {
         String[][] trophy = {
-                {" "," "," "," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," "," "," "," "},
-                {" "," "," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," "," "," "},
-                {" "," ","🟨"," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," ","🟨"," "," "},
-                {" "," ","🟨"," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," ","🟨"," "," "},
-                {" "," "," ","🟨"," ","🟨","🟨","🟨","🟨","🟨"," ","🟨"," "," "," "},
-                {" "," "," "," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," "," "," "," "},
-                {" "," "," "," "," "," ","🟨","🟨","🟨"," "," "," "," "," "," "},
-                {" "," "," "," "," "," ","🟨","🟨","🟨"," "," "," "," "," "," "},
-                {" "," "," "," "," "," ","🟨","🟨","🟨"," "," "," "," "," "," "},
-                {" "," "," "," "," ","🟫","🟫","🟫","🟫","🟫"," "," "," "," "," "},
-                {" "," "," "," "," ","🟫","🟫","🟫","🟫","🟫"," "," "," "," "," "},
-                {" "," "," "," ","🟫","🟫","🟫","🟫","🟫","🟫","🟫"," "," "," "," "},
-                {" "," "," "," ","🟫","🟫","🟫","🟫","🟫","🟫","🟫"," "," "," "," "}
+            {" "," "," "," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," "," "," "," "},
+            {" "," "," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," "," "," "},
+            {" "," ","🟨"," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," ","🟨"," "," "},
+            {" "," ","🟨"," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," ","🟨"," "," "},
+            {" "," "," ","🟨"," ","🟨","🟨","🟨","🟨","🟨"," ","🟨"," "," "," "},
+            {" "," "," "," ","🟨","🟨","🟨","🟨","🟨","🟨","🟨"," "," "," "," "},
+            {" "," "," "," "," "," ","🟨","🟨","🟨"," "," "," "," "," "," "},
+            {" "," "," "," "," "," ","🟨","🟨","🟨"," "," "," "," "," "," "},
+            {" "," "," "," "," "," ","🟨","🟨","🟨"," "," "," "," "," "," "},
+            {" "," "," "," "," ","🟫","🟫","🟫","🟫","🟫"," "," "," "," "," "},
+            {" "," "," "," "," ","🟫","🟫","🟫","🟫","🟫"," "," "," "," "," "},
+            {" "," "," "," ","🟫","🟫","🟫","🟫","🟫","🟫","🟫"," "," "," "," "},
+            {" "," "," "," ","🟫","🟫","🟫","🟫","🟫","🟫","🟫"," "," "," "," "}
         };
-
+        
         for (int rowsToShow = 1; rowsToShow <= trophy.length; rowsToShow++) {
             System.out.print("\033[H\033[2J");
             System.out.println("\033[0;1m" + name + "\033[0m");
-
+        
             for (int r = 0; r < trophy.length; r++) {
                 if (r < trophy.length - rowsToShow) {
                     System.out.println();
@@ -197,15 +200,15 @@ public class InputHandler {
                     System.out.println();
                 }
             }
-
+        
             Shop.wait(200);
         }
         System.out.println("\t   YOU WON!");
 
         TimeFormat winTime = new TimeFormat(elapsed);
-
+        
         System.out.println("\tTime: " + winTime.toString());
-
+        
         Leaderboard l = new Leaderboard();
         try {
             l.append(elapsed, name, new SimpleDateFormat("MM-dd-yyyy").format(new Date(System.currentTimeMillis())));
