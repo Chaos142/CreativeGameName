@@ -28,7 +28,7 @@ Items that can fall from the sky (customize as needed):
 - 💻 Laptop - spawns a wall of bombs  
 - 🎰 Slot Machine - has a random effect   
 
-## ▶️ How to Run  
+## How to Run  
 ### Native Java  
 1. Download the latest release  
 2. Run java -jar `jarfile.jar` in a console
