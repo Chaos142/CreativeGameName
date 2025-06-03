@@ -37,5 +37,5 @@ Items that can fall from the sky (customize as needed):
 Since the game was made for CodeHS, it is the recommended environment. However, the leaderboard may not work as intended.  
 1. Download the source code  
 2. Upload each `.java` file and `leaderboard.txt` to the CodeHS repository  
-**OR**
+**OR**  
 [Use this link to play our version](https://codehs.com/sandbox/id/finalproject-5KrTSO/run)  
