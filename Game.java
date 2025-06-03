@@ -3,45 +3,45 @@ public class Game {
     private int maxIntegrity;
     private Player player;
     private Shop shop;
-
+    
     private BoardStepper stepper;
-
+    
     private long shopOpenTimer;
-
+    
     private Collectible bomb;
-
+    
     public Game() {
         // CREATE COLLECTIBLES HERE (feel free to add as many as you want for now)
         // these are just ideas
-
+        
         new Collectible("🔧", true, 2);
         new Collectible("🕒", false);
         new Collectible("🧲", false);
-
+        
         bomb = new Collectible("💣", false, 3);
         new Collectible("🕸", false);
         new Collectible("👾", false);
         new Collectible("💻", false);
-
+        
         new Collectible("🎰", false);
-
-
+        
+        
         board = new Board();
         shop = new Shop();
         maxIntegrity = board.getBoard().length;
         player = new Player(board.getBoard().length, board.getBoard()[0].length);
         board.addPlayer(player);
-
+        
         shopOpenTimer = System.currentTimeMillis() + (int) (Math.random() * 30001) + 30000;
     }
-
+    
     public void addStepper(BoardStepper s) {
         stepper = s;
     }
-
+    
     public void step(BoardStepper stepper) {
         if (shop.isOpen()) return;
-
+        
         if (shopOpenTimer - System.currentTimeMillis() < 10000 && player.getBuildItems() == 0) {
             shopOpenTimer += 10000;
         }
@@ -57,12 +57,12 @@ public class Game {
         }
         handleCaughtItems();
         board.cleanup();
-
+        
         // this probably wont happen on every turn to make it more balanced
         board.spawnCollectible(Collectible.getRandomCopy());
-
+        
         board.disp(stepper, shopOpenTimer);
-
+        
         if (player.getHealth() <= 0) {
             board.dispExplosion(board.getBoard().length - 2, player.pos());
             player.delete();
@@ -80,16 +80,16 @@ public class Game {
             System.exit(0);
         }
     }
-
+    
     public Player getPlayer() {
         return player;
     }
-
+    
     public Shop getShop()
     {
         return shop;
     }
-
+    
     public void itemExecution(String itemType) {
         switch (itemType) {
             case "🔧":
@@ -125,15 +125,15 @@ public class Game {
                 break;
         }
     }
-
+    
     public Board getBoard() {
         return board;
     }
-
+    
     public int getMaxIntegrity() {
         return maxIntegrity;
     }
-
+    
     public void handleCaughtItems() {
         for (Collectible caughtItem : board.catchItem()) {
             if (caughtItem != null) {
@@ -142,13 +142,17 @@ public class Game {
             }
         }
     }
-
+    
     public void reformBoard() {
         board = new Board();
         board.addPlayer(player);
     }
-
+    
     public long shopOpenTimer() {
         return shopOpenTimer;
+    }
+    
+    public void addMoreWrenches(int w) {
+        new Collectible("🔧", true, w);
     }
 }
